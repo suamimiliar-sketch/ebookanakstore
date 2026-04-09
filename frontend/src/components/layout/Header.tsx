@@ -23,9 +23,9 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-ink/5 bg-cream/85 backdrop-blur safe-top">
-      <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="group flex items-center gap-2">
-          <span className="relative inline-block h-11 w-11">
+      <div className="container flex h-20 items-center justify-between md:h-24">
+        <Link href="/" className="group flex items-center" aria-label="Pelangi Pintar — beranda">
+          <span className="relative inline-block h-16 w-16 md:h-20 md:w-20">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={LOGO_DEFAULT}
@@ -39,9 +39,6 @@ export function Header() {
               aria-hidden="true"
               className="absolute inset-0 h-full w-full object-contain opacity-0 transition-opacity duration-200 group-hover:opacity-100"
             />
-          </span>
-          <span className="font-display text-xl leading-none">
-            Pelangi <span className="text-brand-500">Pintar</span>
           </span>
         </Link>
 

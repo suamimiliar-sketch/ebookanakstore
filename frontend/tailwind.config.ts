@@ -69,6 +69,37 @@ const config: Config = {
         // Warm gold glow (replaces the old orange-tinted shadow)
         soft: "0 10px 30px -12px rgba(255, 187, 0, 0.28)",
         sky: "0 10px 30px -12px rgba(43, 79, 110, 0.22)",
+        // Glassmorphism floating card
+        float: "0 20px 60px -20px rgba(43, 79, 110, 0.25), 0 8px 24px -12px rgba(255, 187, 0, 0.18)",
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "float-slow": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-16px)" },
+        },
+        bob: {
+          "0%, 100%": { transform: "translateY(0px) rotate(-1deg)" },
+          "50%": { transform: "translateY(-14px) rotate(2deg)" },
+        },
+        twinkle: {
+          "0%, 100%": { opacity: "0.4", transform: "scale(0.9)" },
+          "50%": { opacity: "1", transform: "scale(1.15)" },
+        },
+        "pulse-soft": {
+          "0%, 100%": { opacity: "0.6" },
+          "50%": { opacity: "1" },
+        },
+      },
+      animation: {
+        float: "float 3s ease-in-out infinite",
+        "float-slow": "float-slow 4.5s ease-in-out infinite",
+        bob: "bob 5s ease-in-out infinite",
+        twinkle: "twinkle 2.5s ease-in-out infinite",
+        "pulse-soft": "pulse-soft 4s ease-in-out infinite",
       },
     },
   },
