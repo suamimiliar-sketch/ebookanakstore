@@ -4,19 +4,24 @@ How v1 data + features land in v2.
 
 ## What we keep from v1
 
-- The product catalog (`production_backup/ebooks.json`, `minigames.json`, `ebook_exclusive.json`).
+- The ebook catalog (`production_backup/ebooks.json`, `ebook_exclusive.json`).
 - Site settings (`production_backup/site_settings.json`).
 - Cloudinary URLs — unchanged, the CDN paths still work.
 - Google Drive download links — unchanged.
 - Midtrans account, server key, client key — unchanged.
-- Brand (colors, fonts, tone) — refreshed but same identity.
+- Brand — fully rebranded as **Pelangi Pintar** with a new palette, logo, and mascot (Huto).
 
 ## What we drop
 
 - MongoDB + Motor → Postgres + SQLAlchemy.
 - CRA + craco + react-router → Next.js 14 App Router.
-- Three product collections → one unified `products` table.
+- Two ebook collections → one unified `products` table.
 - The 925-line `AdminDashboard.jsx` → per-entity pages under `src/app/admin/*/page.tsx`.
+- **Mini-games are retired.** The `minigames.json` source is no longer imported, the
+  `minigame` product type has been removed from all schemas and API surfaces, and the
+  `GameAccessToken` table is gone. Any existing `product_type='minigame'` rows on the
+  prod Postgres are defensively filtered out at the API layer and should be manually
+  cleaned up.
 
 ## Field mapping
 
@@ -36,13 +41,14 @@ How v1 data + features land in v2.
 | `pages[].imageUrl`    | `product_pages.image_url`  |                                   |
 | `isBonus`             | `is_bonus`                 |                                   |
 | `driveDownloadLink`   | `drive_download_link`      |                                   |
-| `productType`         | `product_type`             | discriminator                     |
+| `productType`         | `product_type`             | discriminator (`ebook` \| `ebook_exclusive`) |
 | `thumbnailUrl`        | `thumbnail_url`            |                                   |
-| `gameUrl`             | `game_url`                 | minigame only                     |
-| `icon`                | `icon`                     | minigame only                     |
-| `accessDuration`      | `access_duration_hours`    | default 24                        |
 | `hasAudio`            | `has_audio`                | exclusive only                    |
 | `hasInteractive`      | `has_interactive`          | exclusive only                    |
+
+**Dropped v1 fields (minigame-only, no longer in the schema):** `gameUrl`, `icon`,
+`accessDuration`. If they appear in `production_backup/minigames.json` they are simply
+ignored — the seeder no longer processes that file at all.
 
 Orders are **not** migrated — v1 orders stay in MongoDB as historical reference, v2 starts fresh with an empty `orders` table.
 
@@ -63,7 +69,7 @@ Or use the shell wrapper:
 Output:
 
 ```
-Imported: {'ebook': 38, 'minigame': 4, 'ebook_exclusive': 6, 'settings': 9}
+Imported: {'ebook': 38, 'ebook_exclusive': 6, 'settings': 9}
 ```
 
 The script is idempotent — re-running it deletes and reinserts each matching `id`.

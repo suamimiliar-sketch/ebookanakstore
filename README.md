@@ -1,7 +1,8 @@
-# ebookanakstore v2
+# ebookanakstore v2 — Pelangi Pintar
 
-Production-grade rebuild of **ebookanak.store** — an Indonesian digital storefront selling
-printable ebooks, mini-games, and exclusive content for kids.
+Production-grade rebuild of **ebookanak.store**, now branded as **Pelangi Pintar** — an
+Indonesian digital storefront selling printable ebooks and exclusive content for kids
+ages 0–8. Smart, colorful, and joyful learning.
 
 This v2 is a full rewrite on a modern, mobile-first, professionally architected stack.
 

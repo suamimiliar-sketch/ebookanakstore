@@ -61,7 +61,7 @@
 **Data**
 
 - Postgres in prod, SQLite fallback for local dev via `DATABASE_URL`.
-- All three product types (`ebook`, `minigame`, `ebook_exclusive`) share one `products` table with type-specific nullable columns. This avoids v1's three-collection sprawl.
+- Both remaining product types (`ebook`, `ebook_exclusive`) share one `products` table with type-specific nullable columns. This avoids v1's multi-collection sprawl. The `minigame` type has been retired; see DATA-MODEL.md for the retirement notes.
 - `product_pages` is a child table for preview images.
 - `site_settings` is a key/JSON table — any editable site block is one row.
 
