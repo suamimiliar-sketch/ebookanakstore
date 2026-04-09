@@ -1,6 +1,33 @@
 import type { Metadata, Viewport } from "next";
+import { Fredoka, Nunito } from "next/font/google";
 import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/toaster";
+
+/**
+ * Pelangi Pintar typography system
+ *
+ * - Fredoka (display): rounded bubble sans that echoes the chunky roundness
+ *   of the Pelangi Pintar logo. Used for h1–h3, badges, and the logo
+ *   wordmark contexts.
+ * - Nunito (body): friendly rounded sans with excellent readability. Pairs
+ *   with Fredoka and is used for paragraphs, nav, UI chrome, and buttons.
+ *
+ * Both are self-hosted by Next at build time via next/font/google — no
+ * external CDN request, zero layout shift, optimal CLS.
+ */
+const fredoka = Fredoka({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -31,7 +58,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id">
+    <html lang="id" className={`${fredoka.variable} ${nunito.variable}`}>
       <body>
         {children}
         <Toaster />

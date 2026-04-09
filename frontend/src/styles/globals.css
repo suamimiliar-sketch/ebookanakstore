@@ -13,13 +13,13 @@ html, body {
 }
 
 body {
-  font-family: var(--font-sans, "Plus Jakarta Sans"), system-ui, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
   font-feature-settings: "ss01", "cv11";
 }
 
-h1, h2, h3 {
-  font-family: "Fraunces", Georgia, serif;
-  letter-spacing: -0.01em;
+h1, h2, h3, h4 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  letter-spacing: -0.015em;
 }
 
 /* Pelangi Pintar brand rule: shadows are navy-tinted, never pure black. */

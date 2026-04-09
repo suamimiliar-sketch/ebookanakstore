@@ -62,8 +62,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ['"Fraunces"', "Georgia", "serif"],
-        sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
+        // Display (Fredoka) — headlines, logo contexts, badges
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        // Body (Nunito) — paragraphs, nav, UI
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       boxShadow: {
         // Warm gold glow (replaces the old orange-tinted shadow)
