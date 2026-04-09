@@ -20,3 +20,8 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+
+# Local-only ingest artefacts
+.tmp-thumbs/
+source-pdfs/
+scripts/ingest-preview.json
