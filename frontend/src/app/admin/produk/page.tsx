@@ -106,12 +106,12 @@ export default function AdminProductsPage() {
 
       {editing && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4" onClick={() => setEditing(null)}>
-          <div className="w-full max-w-xl rounded-3xl bg-white p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
-            <div className="mb-4 flex items-center justify-between">
+          <div className="flex max-h-[90vh] w-full max-w-xl flex-col rounded-3xl bg-white shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex shrink-0 items-center justify-between border-b border-ink/10 p-6">
               <h2 className="font-display text-xl">{editing.id ? "Edit produk" : "Produk baru"}</h2>
               <button onClick={() => setEditing(null)}><X className="h-5 w-5" /></button>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3 overflow-y-auto p-6">
               <label className="block text-sm font-medium">Judul
                 <Input value={editing.title || ""} onChange={(e) => setEditing({ ...editing, title: e.target.value })} />
               </label>
@@ -154,7 +154,7 @@ export default function AdminProductsPage() {
                 Aktif
               </label>
             </div>
-            <div className="mt-6 flex justify-end gap-2">
+            <div className="flex shrink-0 justify-end gap-2 border-t border-ink/10 p-6">
               <Button variant="outline" onClick={() => setEditing(null)}>Batal</Button>
               <Button onClick={save}>Simpan</Button>
             </div>
