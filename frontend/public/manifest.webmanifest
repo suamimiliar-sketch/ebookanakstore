@@ -1,11 +1,11 @@
 {
-  "name": "ebookanak.store",
-  "short_name": "ebookanak",
-  "description": "Ebook & mini-game edukatif anak Indonesia",
+  "name": "Pelangi Pintar",
+  "short_name": "Pelangi Pintar",
+  "description": "Ebook edukatif untuk anak Indonesia usia 0-8 tahun.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fffaf3",
-  "theme_color": "#f04c02",
+  "background_color": "#F5EFE0",
+  "theme_color": "#FFBB00",
   "orientation": "portrait",
   "icons": [
     { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },

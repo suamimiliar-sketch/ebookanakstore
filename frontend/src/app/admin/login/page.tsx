@@ -34,7 +34,7 @@ export default function AdminLogin() {
       <form onSubmit={submit} className="w-full max-w-sm space-y-4 rounded-3xl bg-white p-8 shadow-soft">
         <div className="mb-2 text-center">
           <h1 className="font-display text-2xl">Admin Login</h1>
-          <p className="text-sm text-ink/60">ebookanak.store</p>
+          <p className="text-sm text-ink/60">Pelangi Pintar</p>
         </div>
         <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         <Input

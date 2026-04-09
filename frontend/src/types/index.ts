@@ -1,4 +1,4 @@
-export type ProductType = "ebook" | "minigame" | "ebook_exclusive";
+export type ProductType = "ebook" | "ebook_exclusive";
 
 export interface ProductPage {
   id?: number;
@@ -21,9 +21,6 @@ export interface Product {
   drive_download_link?: string | null;
   is_bonus: boolean;
   thumbnail_url?: string | null;
-  game_url?: string | null;
-  icon?: string | null;
-  access_duration_hours: number;
   has_audio: boolean;
   has_interactive: boolean;
   is_active: boolean;

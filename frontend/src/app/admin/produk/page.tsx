@@ -124,7 +124,6 @@ export default function AdminProductsPage() {
                   >
                     <option value="ebook">Ebook</option>
                     <option value="ebook_exclusive">Ebook Exclusive</option>
-                    <option value="minigame">Mini Game</option>
                   </select>
                 </label>
                 <label className="block text-sm font-medium">Usia

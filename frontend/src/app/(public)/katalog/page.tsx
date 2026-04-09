@@ -24,7 +24,7 @@ export default async function KatalogPage({
     <div className="container py-10">
       <header className="mb-8">
         <h1 className="font-display text-4xl md:text-5xl">Katalog</h1>
-        <p className="mt-2 text-ink/60">Temukan ebook, flashcard, dan mini-game favorit si kecil.</p>
+        <p className="mt-2 text-ink/60">Temukan ebook, flashcard, dan produk digital edukatif favorit si kecil.</p>
       </header>
       <ProductGrid products={products} />
     </div>

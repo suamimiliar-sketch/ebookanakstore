@@ -5,8 +5,9 @@ import { ChevronDown } from "lucide-react";
 const faqs = [
   { q: "Bagaimana cara mendapatkan ebooknya?", a: "Setelah pembayaran berhasil, link download akan otomatis dikirim ke email kamu." },
   { q: "Apakah ebooknya bisa dicetak?", a: "Ya, semua ebook dibuat dalam format PDF A4 siap cetak di rumah atau percetakan." },
-  { q: "Apakah mini-game bisa dimainkan di HP?", a: "Ya, mini-game bisa dimainkan di browser Android maupun iOS selama 24 jam setelah pembelian." },
+  { q: "Apakah ebooknya bisa dibuka di HP?", a: "Ya, semua ebook bisa dibuka di HP, tablet, dan laptop karena formatnya PDF standar." },
   { q: "Diskon bundle seperti apa?", a: "Beli 5 produk atau lebih di keranjang, otomatis dapat diskon 20%." },
+  { q: "Bagaimana kalau belum terima email setelah bayar?", a: "Cek folder Spam/Promotions dulu. Kalau belum ada dalam 15 menit, WhatsApp kami dan kami kirim manual." },
 ];
 
 export function FAQ() {

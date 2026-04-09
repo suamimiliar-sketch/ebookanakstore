@@ -17,6 +17,6 @@ export const useAuth = create<AuthState>()(
       setToken: (token, email) => set({ token, email }),
       signOut: () => set({ token: null, email: null }),
     }),
-    { name: "ebookanak-admin-auth" },
+    { name: "pelangi-pintar-admin-auth" },
   ),
 );

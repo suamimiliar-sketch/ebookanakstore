@@ -1,5 +1,16 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * Pelangi Pintar brand palette
+ * See: PELANGI PINTAR — Brand Visual Knowledge Base (v1.0)
+ *
+ * - brand   = sunshine-gold system (primary CTA, accent, highlights)
+ * - sky     = Huto mascot blue system (secondary, surfaces, shadows)
+ * - cream   = warm neutral background
+ * - amber   = warm accent / rim light / secondary CTA
+ * - blush   = soft playful accent
+ * - ink     = deep navy for text and rich shadows (NOT pure black)
+ */
 const config: Config = {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
@@ -10,27 +21,54 @@ const config: Config = {
     },
     extend: {
       colors: {
+        // Sunshine gold (primary)
         brand: {
-          50: "#fff7ec",
-          100: "#ffe9ce",
-          200: "#ffcf98",
-          300: "#ffac5a",
-          400: "#ff872e",
-          500: "#ff6a0d",
-          600: "#f04c02",
-          700: "#c73704",
-          800: "#9e2e0c",
-          900: "#7f2a0d",
+          50: "#FFF8E0",
+          100: "#FFEFB8",
+          200: "#FFE184",
+          300: "#FFD04C",
+          400: "#FFC41F",
+          500: "#FFBB00", // sunshine-gold (signature)
+          600: "#E6A800",
+          700: "#C78F00",
+          800: "#9E7200",
+          900: "#7A5700",
         },
-        ink: { DEFAULT: "#1b1410", soft: "#4a3a33" },
-        cream: "#fffaf3",
+        // Huto mascot blue system
+        sky: {
+          50: "#F4FAFD",
+          100: "#E8F4FB", // cloud-blue
+          200: "#D6EEF8", // sky-light
+          300: "#AFD8EA",
+          400: "#8BBFD4", // sky-feather (main mascot blue)
+          500: "#4D8FAA", // deep-wing
+          600: "#2B4F6E", // owl-navy
+          700: "#1A2E40", // navy-deep
+        },
+        // Warm neutrals
+        cream: "#F5EFE0", // cream-belly (default cream)
+        "cream-warm": "#C8B899",
+        // Warm accents
+        amber: {
+          DEFAULT: "#F5A030", // amber-beak
+          deep: "#C8782A",
+          soft: "#FFDD80", // gold-soft (key light tone)
+        },
+        blush: "#FFB8B8", // blush-pink
+        // Ink: deep navy for text and shadows (brand rule: NEVER pure black)
+        ink: {
+          DEFAULT: "#1A2E40", // navy-deep
+          soft: "#2B4F6E", // owl-navy
+        },
       },
       fontFamily: {
         display: ['"Fraunces"', "Georgia", "serif"],
         sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 10px 30px -12px rgba(240, 76, 2, 0.25)",
+        // Warm gold glow (replaces the old orange-tinted shadow)
+        soft: "0 10px 30px -12px rgba(255, 187, 0, 0.28)",
+        sky: "0 10px 30px -12px rgba(43, 79, 110, 0.22)",
       },
     },
   },
