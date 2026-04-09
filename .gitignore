@@ -9,6 +9,7 @@ backend/.env
 # Node / Next
 node_modules/
 .next/
+*.tsbuildinfo
 frontend/.env.local
 frontend/.env.*.local
 
