@@ -5,7 +5,7 @@ from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 class OrderItemCreate(BaseModel):
     product_id: int
-    product_type: Literal["ebook", "minigame", "ebook_exclusive"]
+    product_type: Literal["ebook", "ebook_exclusive"]
     quantity: int = 1
 
 
@@ -25,7 +25,6 @@ class OrderItemOut(BaseModel):
     quantity: int
     price: int
     drive_download_link: Optional[str] = None
-    game_url: Optional[str] = None
 
 
 class OrderOut(BaseModel):

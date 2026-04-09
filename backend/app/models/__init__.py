@@ -1,7 +1,6 @@
 from app.models.admin import AdminUser
 from app.models.product import Product, ProductPage
 from app.models.order import Order, OrderItem
-from app.models.game_access import GameAccessToken
 from app.models.site_settings import SiteSetting
 
 __all__ = [
@@ -10,6 +9,5 @@ __all__ = [
     "ProductPage",
     "Order",
     "OrderItem",
-    "GameAccessToken",
     "SiteSetting",
 ]

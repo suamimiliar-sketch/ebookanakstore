@@ -10,16 +10,25 @@ from app.schemas import ProductOut
 router = APIRouter()
 
 
+def _base_query(db: Session):
+    """Base query excluding any legacy minigame rows that may still exist on prod."""
+    return (
+        db.query(Product)
+        .filter(Product.is_active == True)  # noqa: E712
+        .filter(Product.product_type != "minigame")
+    )
+
+
 @router.get("", response_model=list[ProductOut])
 def list_products(
     db: Session = Depends(get_db),
-    type: str | None = Query(None, description="ebook | minigame | ebook_exclusive"),
+    type: str | None = Query(None, description="ebook | ebook_exclusive"),
     age: str | None = Query(None),
     category: str | None = Query(None),
     q: str | None = Query(None),
 ):
-    query = db.query(Product).filter(Product.is_active == True)  # noqa: E712
-    if type:
+    query = _base_query(db)
+    if type and type != "minigame":
         query = query.filter(Product.product_type == type)
     if age:
         query = query.filter(Product.age_group == age)
@@ -33,7 +42,7 @@ def list_products(
 
 @router.get("/{product_id}", response_model=ProductOut)
 def get_product(product_id: int, db: Session = Depends(get_db)):
-    p = db.query(Product).filter(Product.id == product_id, Product.is_active == True).first()  # noqa: E712
+    p = _base_query(db).filter(Product.id == product_id).first()
     if not p:
         raise HTTPException(404, "Product not found")
     return p

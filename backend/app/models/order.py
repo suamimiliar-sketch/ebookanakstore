@@ -44,7 +44,5 @@ class OrderItem(Base):
     quantity: Mapped[int] = mapped_column(Integer, default=1)
     price: Mapped[int] = mapped_column(Integer)
     drive_download_link: Mapped[str | None] = mapped_column(String(512), nullable=True)
-    game_url: Mapped[str | None] = mapped_column(String(512), nullable=True)
-    access_token: Mapped[str | None] = mapped_column(String(64), nullable=True)
 
     order: Mapped[Order] = relationship(back_populates="items")

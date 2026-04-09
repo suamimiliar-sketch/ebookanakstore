@@ -56,7 +56,6 @@ async def create_order(payload: OrderCreate, db: Session = Depends(get_db)):
             quantity=r["quantity"],
             price=r["price"],
             drive_download_link=p.drive_download_link,
-            game_url=p.game_url,
         ))
     db.add(order)
     db.commit()

@@ -33,9 +33,6 @@ def _upsert_product(db, data: dict, product_type: str) -> None:
         drive_download_link=data.get("driveDownloadLink"),
         is_bonus=bool(data.get("isBonus", False)),
         thumbnail_url=data.get("thumbnailUrl"),
-        game_url=data.get("gameUrl"),
-        icon=data.get("icon"),
-        access_duration_hours=int(data.get("accessDuration", 24)),
         has_audio=bool(data.get("hasAudio", False)),
         has_interactive=bool(data.get("hasInteractive", False)),
         is_active=True,
@@ -52,7 +49,7 @@ def _upsert_product(db, data: dict, product_type: str) -> None:
 def run(backup_path: Path) -> None:
     Base.metadata.create_all(bind=engine)
     db = SessionLocal()
-    imported = {"ebook": 0, "minigame": 0, "ebook_exclusive": 0, "settings": 0}
+    imported = {"ebook": 0, "ebook_exclusive": 0, "settings": 0}
     try:
         ebooks = backup_path / "ebooks.json"
         if ebooks.exists():
@@ -66,11 +63,7 @@ def run(backup_path: Path) -> None:
                 _upsert_product(db, item, "ebook_exclusive")
                 imported["ebook_exclusive"] += 1
 
-        minis = backup_path / "minigames.json"
-        if minis.exists():
-            for item in json.loads(minis.read_text(encoding="utf-8")):
-                _upsert_product(db, item, "minigame")
-                imported["minigame"] += 1
+        # NOTE: minigames.json intentionally skipped — minigame product type has been retired.
 
         settings_file = backup_path / "site_settings.json"
         if settings_file.exists():

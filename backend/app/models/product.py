@@ -1,4 +1,4 @@
-"""Unified product table — covers ebook, minigame, ebook_exclusive."""
+"""Unified product table — covers ebook and ebook_exclusive."""
 from datetime import datetime
 from sqlalchemy import String, Integer, Boolean, DateTime, ForeignKey, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -9,7 +9,7 @@ class Product(Base):
     __tablename__ = "products"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    product_type: Mapped[str] = mapped_column(String(32), index=True)  # ebook | minigame | ebook_exclusive
+    product_type: Mapped[str] = mapped_column(String(32), index=True)  # ebook | ebook_exclusive
     title: Mapped[str] = mapped_column(String(255), index=True)
     category: Mapped[str] = mapped_column(String(120), index=True)
     age_group: Mapped[str] = mapped_column(String(32), index=True)
@@ -23,11 +23,8 @@ class Product(Base):
     drive_download_link: Mapped[str | None] = mapped_column(String(512), nullable=True)
     is_bonus: Mapped[bool] = mapped_column(Boolean, default=False)
 
-    # minigame fields
+    # product image (used across product types as the cover thumbnail)
     thumbnail_url: Mapped[str | None] = mapped_column(String(512), nullable=True)
-    game_url: Mapped[str | None] = mapped_column(String(512), nullable=True)
-    icon: Mapped[str | None] = mapped_column(String(64), nullable=True)
-    access_duration_hours: Mapped[int] = mapped_column(Integer, default=24)
 
     # exclusive fields
     has_audio: Mapped[bool] = mapped_column(Boolean, default=False)

@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Literal, Optional, List
 from pydantic import BaseModel, ConfigDict, Field
 
-ProductType = Literal["ebook", "minigame", "ebook_exclusive"]
+ProductType = Literal["ebook", "ebook_exclusive"]
 
 
 class ProductPageIn(BaseModel):
@@ -29,9 +29,6 @@ class ProductBase(BaseModel):
     drive_download_link: Optional[str] = None
     is_bonus: bool = False
     thumbnail_url: Optional[str] = None
-    game_url: Optional[str] = None
-    icon: Optional[str] = None
-    access_duration_hours: int = 24
     has_audio: bool = False
     has_interactive: bool = False
     is_active: bool = True
@@ -53,9 +50,6 @@ class ProductUpdate(BaseModel):
     drive_download_link: Optional[str] = None
     is_bonus: Optional[bool] = None
     thumbnail_url: Optional[str] = None
-    game_url: Optional[str] = None
-    icon: Optional[str] = None
-    access_duration_hours: Optional[int] = None
     has_audio: Optional[bool] = None
     has_interactive: Optional[bool] = None
     is_active: Optional[bool] = None
