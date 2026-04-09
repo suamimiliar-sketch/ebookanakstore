@@ -1,0 +1,14 @@
+{
+  "name": "ebookanak.store",
+  "short_name": "ebookanak",
+  "description": "Ebook & mini-game edukatif anak Indonesia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fffaf3",
+  "theme_color": "#f04c02",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
