@@ -132,7 +132,8 @@ def send_delivery_email(order) -> bool:
     html = _build_html(order)
     msg = MIMEMultipart("alternative")
     msg["Subject"] = f"Download Ebook Kamu — {order.order_id}"
-    msg["From"] = f"Pelangi Pintar <{settings.NOTIFY_FROM}>"
+    sender = settings.NOTIFY_FROM or settings.SMTP_USER
+    msg["From"] = f"Pelangi Pintar <{sender}>"
     msg["To"] = order.customer_email
     msg.attach(MIMEText(html, "html"))
 

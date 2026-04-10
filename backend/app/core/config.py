@@ -35,7 +35,7 @@ class Settings(BaseSettings):
     SMTP_PORT: int = 587
     SMTP_USER: str = ""
     SMTP_PASSWORD: str = ""
-    NOTIFY_FROM: str = "noreply@ebookanak.store"
+    NOTIFY_FROM: str = ""
 
     @property
     def cors_list(self) -> List[str]:
