@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Fredoka, Nunito } from "next/font/google";
 import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { Analytics } from "@/components/Analytics";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonld";
 
 /**
@@ -39,7 +40,14 @@ export const metadata: Metadata = {
   description:
     "Ebook edukatif untuk anak Indonesia usia 0–9 tahun. Flashcard, worksheet, coloring book, dan aktivitas belajar dalam format PDF siap cetak. Download sekali, pakai berkali-kali.",
   manifest: "/manifest.webmanifest",
-  icons: { icon: "/favicon.ico", apple: "/icons/icon-192.png" },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/icons/apple-touch-icon.png",
+    other: [
+      { rel: "icon", type: "image/png", sizes: "192x192", url: "/icons/icon-192.png" },
+      { rel: "icon", type: "image/png", sizes: "512x512", url: "/icons/icon-512.png" },
+    ],
+  },
   openGraph: {
     title: "Pelangi Pintar — Ebook Edukasi Anak Indonesia",
     description:
@@ -48,12 +56,14 @@ export const metadata: Metadata = {
     siteName: "Pelangi Pintar",
     locale: "id_ID",
     type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Pelangi Pintar — Ebook Edukasi Anak Indonesia" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pelangi Pintar — Ebook Edukasi Anak Indonesia",
     description:
       "Ebook edukatif untuk anak Indonesia. Flashcard, worksheet, coloring book PDF siap cetak.",
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "https://ebookanak.store",
@@ -88,6 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         {children}
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
