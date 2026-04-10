@@ -5,6 +5,7 @@ import { formatIDR } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart-store";
 import { toast } from "sonner";
+import { trackAddToCart } from "@/lib/pixel-events";
 
 export function ProductCard({ product }: { product: Product }) {
   const add = useCart((s) => s.add);
@@ -43,6 +44,7 @@ export function ProductCard({ product }: { product: Product }) {
             size="sm"
             onClick={() => {
               add(product);
+              trackAddToCart(product);
               toast.success("Ditambahkan ke keranjang");
             }}
           >
