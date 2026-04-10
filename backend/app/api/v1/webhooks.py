@@ -1,14 +1,17 @@
 """Midtrans payment-status webhook handler."""
+import logging
 from datetime import datetime
 import hashlib
 
 from fastapi import APIRouter, Depends, HTTPException, Request
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
 from app.core.config import get_settings
 from app.db.base import get_db
 from app.models import Order
+from app.services.email import send_delivery_email
 
+log = logging.getLogger(__name__)
 router = APIRouter()
 settings = get_settings()
 
@@ -30,9 +33,11 @@ async def midtrans_webhook(request: Request, db: Session = Depends(get_db)):
     if not _verify_signature(order_id, body.get("status_code", ""), body.get("gross_amount", ""), sig):
         raise HTTPException(403, "Bad signature")
 
-    order = db.query(Order).filter(Order.order_id == order_id).first()
+    order = db.query(Order).options(joinedload(Order.items)).filter(Order.order_id == order_id).first()
     if not order:
         raise HTTPException(404, "Unknown order")
+
+    was_pending = order.payment_status != "success"
 
     if tx_status in ("capture", "settlement") and fraud in (None, "accept"):
         order.payment_status = "success"
@@ -44,4 +49,10 @@ async def midtrans_webhook(request: Request, db: Session = Depends(get_db)):
 
     order.midtrans_transaction_id = body.get("transaction_id")
     db.commit()
+
+    # Send delivery email on first successful payment
+    if order.payment_status == "success" and was_pending:
+        db.refresh(order)
+        send_delivery_email(order)
+
     return {"ok": True}
