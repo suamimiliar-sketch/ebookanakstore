@@ -7,6 +7,7 @@ import { formatIDR } from "@/lib/utils";
 import { api } from "@/lib/api";
 import { toast } from "sonner";
 import { Trash2 } from "lucide-react";
+import { trackPurchase } from "@/lib/pixel-events";
 
 export default function CheckoutPage() {
   const cart = useCart();
@@ -36,6 +37,11 @@ export default function CheckoutPage() {
           quantity: i.quantity,
         })),
       });
+      trackPurchase(
+        res.order_id,
+        res.total,
+        cart.items.map((i) => ({ id: i.productId })),
+      );
       toast.success(`Order ${res.order_id} dibuat`);
       if (res.redirect_url) window.location.href = res.redirect_url;
       cart.clear();
