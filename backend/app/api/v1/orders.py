@@ -76,6 +76,7 @@ async def create_order(payload: OrderCreate, db: Session = Depends(get_db)):
             "quantity": r["quantity"],
             "name": r["product"].title[:50],
         } for r in rows],
+        discount=totals["discount"],
     )
     order.snap_token = snap["token"]
     db.commit()
