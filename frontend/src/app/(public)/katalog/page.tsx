@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { api } from "@/lib/api";
 import { ProductGrid } from "@/components/sections/ProductGrid";
-import { Sparkles, Gift, ArrowRight } from "lucide-react";
+import { Sparkles, ShoppingCart } from "lucide-react";
 
 export const revalidate = 120;
 
@@ -37,46 +36,34 @@ export default async function KatalogPage({
         </p>
       </header>
 
-      {/* Promo banner — bundle ekslusif */}
-      {showExclusive && exclusive.length > 0 && (
-        <Link
-          href="/katalog?type=ebook_exclusive"
-          className="group relative mb-10 block overflow-hidden rounded-3xl bg-gradient-to-br from-rose-400 via-fuchsia-500 to-indigo-500 p-1 shadow-xl transition hover:shadow-2xl"
-        >
-          <div className="relative flex flex-col items-start gap-6 rounded-[22px] bg-gradient-to-br from-rose-500/90 via-fuchsia-600/90 to-indigo-600/90 p-6 text-white md:flex-row md:items-center md:gap-10 md:p-10">
-            <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
-            <div className="absolute -bottom-12 -left-8 h-44 w-44 rounded-full bg-white/10 blur-2xl" />
+      {/* Promo banner — diskon 20% beli 5+ */}
+      <div className="relative mb-10 overflow-hidden rounded-3xl bg-gradient-to-r from-brand-500 via-amber to-brand-400 p-[2px]">
+        <div className="relative flex flex-col items-center gap-4 rounded-[22px] bg-gradient-to-r from-brand-500 via-amber to-brand-400 px-6 py-6 text-center md:flex-row md:gap-6 md:px-10 md:py-8 md:text-left">
+          <div className="absolute -right-8 -top-8 h-36 w-36 rounded-full bg-white/15 blur-2xl" />
+          <div className="absolute -bottom-10 -left-6 h-40 w-40 rounded-full bg-white/15 blur-2xl" />
 
-            <div className="relative grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-white/15 backdrop-blur md:h-20 md:w-20">
-              <Gift className="h-8 w-8 md:h-10 md:w-10" />
-            </div>
-
-            <div className="relative flex-1">
-              <span className="inline-flex items-center gap-1 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide backdrop-blur">
-                <Sparkles className="h-3 w-3" /> Bundle Eksklusif
-              </span>
-              <h2 className="mt-3 font-display text-2xl leading-tight md:text-4xl">
-                Hemat Lebih Banyak dengan Premium Bundle!
-              </h2>
-              <p className="mt-2 max-w-2xl text-sm text-white/90 md:text-base">
-                Ratusan halaman aktivitas, worksheet & flashcard dalam satu paket lengkap.
-                Hanya <span className="font-bold">Rp 35.000</span> per bundle — cocok untuk semua usia.
-              </p>
-            </div>
-
-            <div className="relative inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-fuchsia-700 shadow-lg transition group-hover:translate-x-1">
-              Lihat Bundle <ArrowRight className="h-4 w-4" />
-            </div>
+          <div className="relative grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/25 backdrop-blur md:h-16 md:w-16">
+            <ShoppingCart className="h-7 w-7 text-ink md:h-8 md:w-8" />
           </div>
-        </Link>
-      )}
+
+          <div className="relative flex-1">
+            <h2 className="font-display text-xl leading-tight text-ink md:text-2xl">
+              Makin Banyak, Makin Hemat!
+            </h2>
+            <p className="mt-1 text-sm text-ink/80 md:text-base">
+              Tambahkan <span className="font-bold text-ink">5 produk atau lebih</span> ke keranjang
+              dan nikmati <span className="font-bold text-ink">diskon 20% otomatis</span> — tanpa kode promo.
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Section: Ebook Eksklusif */}
       {showExclusive && exclusive.length > 0 && (
         <section className="mb-14">
           <div className="mb-5 flex items-end justify-between gap-4">
             <div>
-              <span className="inline-flex items-center gap-1 rounded-full bg-fuchsia-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-fuchsia-700">
+              <span className="inline-flex items-center gap-1 rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-800">
                 <Sparkles className="h-3 w-3" /> Premium
               </span>
               <h2 className="mt-2 font-display text-2xl md:text-3xl">Ebook Eksklusif</h2>
@@ -91,23 +78,21 @@ export default async function KatalogPage({
       {/* Divider */}
       {showExclusive && showRegular && exclusive.length > 0 && regular.length > 0 && (
         <div className="my-10 flex items-center gap-4">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-ink/15 to-transparent" />
-          <span className="rounded-full border border-ink/10 bg-white px-4 py-1 text-xs font-semibold uppercase tracking-wider text-ink/50">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-sky-300 to-transparent" />
+          <span className="rounded-full border border-sky-200 bg-sky-50 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-sky-600">
             Ebook Reguler
           </span>
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-ink/15 to-transparent" />
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-sky-300 to-transparent" />
         </div>
       )}
 
       {/* Section: Ebook Reguler */}
       {showRegular && regular.length > 0 && (
         <section>
-          {!showExclusive && (
-            <div className="mb-5">
-              <h2 className="font-display text-2xl md:text-3xl">Ebook Reguler</h2>
-              <p className="text-sm text-ink/60">Pilih per judul sesuai usia & kebutuhan si kecil.</p>
-            </div>
-          )}
+          <div className="mb-5">
+            <h2 className="font-display text-2xl md:text-3xl">Ebook Reguler</h2>
+            <p className="text-sm text-ink/60">Pilih per judul sesuai usia & kebutuhan si kecil.</p>
+          </div>
           <ProductGrid products={regular} />
         </section>
       )}
