@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/admin/", "/checkout", "/api/"],
       },
     ],
-    sitemap: "https://ebookanak.store/sitemap.xml",
+    sitemap: "https://www.ebookanak.store/sitemap.xml",
   };
 }
