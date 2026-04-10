@@ -6,6 +6,15 @@ import { SocialProof } from "@/components/sections/SocialProof";
 import { api } from "@/lib/api";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { faqJsonLd } from "@/lib/jsonld";
+
+const homeFaqs = [
+  { question: "Bagaimana cara mendapatkan ebooknya?", answer: "Setelah pembayaran berhasil, link download akan otomatis dikirim ke email kamu." },
+  { question: "Apakah ebooknya bisa dicetak?", answer: "Ya, semua ebook dibuat dalam format PDF A4 siap cetak di rumah atau percetakan." },
+  { question: "Apakah ebooknya bisa dibuka di HP?", answer: "Ya, semua ebook bisa dibuka di HP, tablet, dan laptop karena formatnya PDF standar." },
+  { question: "Diskon bundle seperti apa?", answer: "Beli 5 produk atau lebih di keranjang, otomatis dapat diskon 20%." },
+  { question: "Bagaimana kalau belum terima email setelah bayar?", answer: "Cek folder Spam/Promotions dulu. Kalau belum ada dalam 15 menit, WhatsApp kami dan kami kirim manual." },
+];
 
 export const revalidate = 300;
 
@@ -19,6 +28,10 @@ export default async function HomePage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(homeFaqs)) }}
+      />
       <Hero />
       <section className="container py-12">
         <div className="mb-8 flex items-end justify-between">

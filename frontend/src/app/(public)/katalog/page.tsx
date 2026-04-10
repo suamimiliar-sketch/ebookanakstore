@@ -1,6 +1,21 @@
+import type { Metadata } from "next";
 import { api } from "@/lib/api";
 import { ProductGrid } from "@/components/sections/ProductGrid";
 import { Sparkles, ShoppingCart } from "lucide-react";
+import { collectionJsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
+
+export const metadata: Metadata = {
+  title: "Katalog Ebook Edukasi Anak",
+  description:
+    "Katalog lengkap ebook edukasi anak: flashcard, worksheet, coloring book, tracing book, dan aktivitas belajar PDF siap cetak. Usia 3–9 tahun. Harga mulai Rp 10.000.",
+  alternates: { canonical: "https://ebookanak.store/katalog" },
+  openGraph: {
+    title: "Katalog Ebook Edukasi Anak · Pelangi Pintar",
+    description:
+      "Flashcard, worksheet, coloring book, dan aktivitas belajar PDF untuk anak usia 3–9 tahun.",
+    url: "https://ebookanak.store/katalog",
+  },
+};
 
 export const revalidate = 120;
 
@@ -27,8 +42,29 @@ export default async function KatalogPage({
   const showExclusive = !searchParams.type || searchParams.type === "ebook_exclusive";
   const showRegular = !searchParams.type || searchParams.type === "ebook";
 
+  const breadcrumbs = [
+    { name: "Beranda", url: "https://ebookanak.store" },
+    { name: "Katalog" },
+  ];
+
   return (
     <div className="container py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            collectionJsonLd(
+              "Katalog Ebook Edukasi Anak",
+              "Koleksi lengkap ebook edukasi anak Indonesia: flashcard, worksheet, coloring book, dan aktivitas belajar.",
+              products,
+            ),
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(breadcrumbs)) }}
+      />
       <header className="mb-8">
         <h1 className="font-display text-4xl md:text-5xl">Katalog</h1>
         <p className="mt-2 text-ink/60">

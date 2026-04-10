@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Fredoka, Nunito } from "next/font/google";
 import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonld";
 
 /**
  * Pelangi Pintar typography system
@@ -30,22 +31,39 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ebookanak.store"),
   title: {
     default: "Pelangi Pintar — Ebook Edukasi Anak Indonesia",
     template: "%s · Pelangi Pintar",
   },
   description:
-    "Ebook edukatif untuk anak Indonesia usia 0–8 tahun. Download sekali, pakai berkali-kali. Smart, colorful, and joyful learning.",
+    "Ebook edukatif untuk anak Indonesia usia 0–9 tahun. Flashcard, worksheet, coloring book, dan aktivitas belajar dalam format PDF siap cetak. Download sekali, pakai berkali-kali.",
   manifest: "/manifest.webmanifest",
   icons: { icon: "/favicon.ico", apple: "/icons/icon-192.png" },
   openGraph: {
-    title: "Pelangi Pintar — Ebook Edukasi Anak",
+    title: "Pelangi Pintar — Ebook Edukasi Anak Indonesia",
     description:
-      "Smart, colorful, and joyful learning for Indonesian children. Ebook edukatif untuk anak usia 0–8 tahun.",
+      "Ebook edukatif untuk anak Indonesia usia 0–9 tahun. Flashcard, worksheet, coloring book, dan aktivitas belajar PDF siap cetak.",
     url: "https://ebookanak.store",
     siteName: "Pelangi Pintar",
     locale: "id_ID",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pelangi Pintar — Ebook Edukasi Anak Indonesia",
+    description:
+      "Ebook edukatif untuk anak Indonesia. Flashcard, worksheet, coloring book PDF siap cetak.",
+  },
+  alternates: {
+    canonical: "https://ebookanak.store",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
   },
 };
 
@@ -60,6 +78,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="id" className={`${fredoka.variable} ${nunito.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
+        />
         {children}
         <Toaster />
       </body>
