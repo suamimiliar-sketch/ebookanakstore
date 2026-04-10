@@ -3,6 +3,7 @@ import { Fredoka, Nunito } from "next/font/google";
 import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@/components/Analytics";
+import { MetaPixel } from "@/components/MetaPixel";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonld";
 
 /**
@@ -99,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <Toaster />
         <Analytics />
+        <MetaPixel />
       </body>
     </html>
   );

@@ -5,6 +5,7 @@ import { AddToCartButton } from "@/components/sections/AddToCartButton";
 import { formatIDR } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { productJsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
+import { TrackViewContent } from "@/components/TrackViewContent";
 
 const SITE = "https://ebookanak.store";
 
@@ -79,6 +80,8 @@ export default async function ProductDetail({
           __html: JSON.stringify(breadcrumbJsonLd(breadcrumbs)),
         }}
       />
+
+      <TrackViewContent product={{ id: product.id, title: product.title, price: product.price, category: product.category }} />
 
       {/* Breadcrumb navigation */}
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-ink/50">
