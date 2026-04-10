@@ -10,8 +10,18 @@ declare global {
 }
 
 function fbq(...args: unknown[]) {
-  if (typeof window !== "undefined" && window.fbq) {
+  if (typeof window === "undefined") return;
+  // fbq may not be loaded yet (afterInteractive script), retry briefly
+  if (window.fbq) {
     window.fbq(...args);
+  } else {
+    const t = setInterval(() => {
+      if (window.fbq) {
+        clearInterval(t);
+        window.fbq(...args);
+      }
+    }, 200);
+    setTimeout(() => clearInterval(t), 5000);
   }
 }
 
